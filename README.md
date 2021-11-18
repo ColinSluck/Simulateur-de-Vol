@@ -1,7 +1,7 @@
 # Simulateur-de-Vol
 Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 
-## Liste du matériel
+### Liste du matériel
 
 -	PC
 -	Joystick
@@ -12,5 +12,5 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 -	Qt Creator
 -	Ni MAX
 
-## Diagrame de cas d'utilisation
+### Diagrame de cas d'utilisation
 
