@@ -8,7 +8,8 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 -	Oculus rift
 -	Carte d’acquisition National Instruments – NI USB-6211
 -	Maquette d’avion avec moteurs
--	Visual Studio
+
+### Liste logiciels
 -	Qt Creator
 -	Ni MAX
 
