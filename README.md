@@ -21,6 +21,6 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
      
      
 ### Diagramme de déploiement
-<img src="Diagramme de déploiement.png"
-     alt="Diagramme de déploiement"
+<img src="diagramme de deploiement.png"
+     alt="diagramme de deploiement"
      style="width: 50%;" />
