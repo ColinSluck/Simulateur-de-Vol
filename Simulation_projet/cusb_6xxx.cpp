@@ -1,5 +1,6 @@
 #include "cusb_6xxx.h"
 #include "NIDAQmx.h"
+#include <QElapsedTimer>
 
 CUsb_6xxx::CUsb_6xxx()
 {
@@ -7,12 +8,10 @@ CUsb_6xxx::CUsb_6xxx()
     m_nomTache = QString::fromUtf8("Simulation");
     m_nomCarte = QString::fromUtf8("Dev6/ao0");
     m_numVoie = QString::fromUtf8("ao0");
-    m_connexionCapteur = DAQmx_Val_Cfg_Default;
     m_tension = 0;
 }
 CUsb_6xxx::~CUsb_6xxx()
 {
-
 }
 void CUsb_6xxx::configuration(QString nomTachex,QString nomCartex,QString nomVoiex)
 {
@@ -24,8 +23,6 @@ void CUsb_6xxx::configuration(QString nomTachex,QString nomCartex,QString nomVoi
     m_taskHandle = nullptr;
     m_error = DAQmxCreateTask(m_nomTache.toStdString().c_str(),&m_taskHandle);
     m_error = DAQmxCreateAOVoltageChan(m_taskHandle,"Dev6/ao0","Simulation",-10.0,10.0,DAQmx_Val_Volts,"");
-    m_read = 10;
-    m_i = 0;
 
 }
 void CUsb_6xxx::configuration_2(QString nomTachex,QString nomCartex,QString nomVoiex)
@@ -34,12 +31,9 @@ void CUsb_6xxx::configuration_2(QString nomTachex,QString nomCartex,QString nomV
     m_nomCarte = nomCartex;
     m_numVoie = nomVoiex;
     m_nomCarte = m_nomCarte + "/" + m_numVoie;
-    m_connexionCapteur = DAQmx_Val_Cfg_Default;
     m_taskHandle = nullptr;
     m_error = DAQmxCreateTask(m_nomTache.toStdString().c_str(),&m_taskHandle);
     m_error = DAQmxCreateAOVoltageChan(m_taskHandle,"Dev6/ao1","Simulation2",-10.0,10.0,DAQmx_Val_Volts,"");
-    m_read = 10;
-    m_i = 0;
 
 }
 void CUsb_6xxx::startAcquisition()
