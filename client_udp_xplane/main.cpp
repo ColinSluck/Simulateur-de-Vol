@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <iostream>
 
-
 int main()
 {
 
@@ -51,8 +50,7 @@ int main()
     // Call the recvfrom function to receive datagrams
     // on the bound socket.
     wprintf(L"Receiving datagrams...\n");
-    iResult = recvfrom(RecvSocket,
-                       RecvBuf, BufLen, 0, (SOCKADDR *) & SenderAddr, &SenderAddrSize);
+    iResult = recvfrom(RecvSocket, RecvBuf, BufLen, 0, (SOCKADDR *) & SenderAddr, &SenderAddrSize);
     if (iResult == SOCKET_ERROR) {
         wprintf(L"recvfrom failed with error %d\n", WSAGetLastError());
     }
@@ -64,7 +62,8 @@ int main()
         printf("%x ",pitch_char[x]);
         x++;
     }
-    for(int i=16; i>12; i--)
+    x = 0;
+    for(int i=12; i>8; i--)
     {
         pitch_char[x] = RecvBuf[i];
         printf("%x ",pitch_char[x]);
