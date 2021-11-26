@@ -15,11 +15,11 @@ int main(int argc, char *argv[])
 
     CUsb_6xxx *usb1=new CUsb_6xxx;
     usb1->configuration("Simulation","Dev6","ao0");
-    usb1->setAO0(0);
+    usb1->setAO0(5);
 
     CUsb_6xxx *usb2=new CUsb_6xxx;
-    usb2->configuration_2("Simulation","Dev6","ai0");
-    usb2->setAi0(6);
+    usb2->configuration_2("Simulation2","Dev6","ao1");
+    usb2->setAO1(0);
 
 
     return a.exec();

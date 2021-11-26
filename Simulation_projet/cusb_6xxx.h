@@ -41,7 +41,7 @@ class CUsb_6xxx
         void startAcquisition();
         //Acquisition de N points
         void setAO0(double p_tension);
-        void setAi0(double p_tension);
+        void setAO1(double p_tension);
         //Arrêt acquisition
         void stopAcquisition();
         //Suppression de la tâche d'acquisition
