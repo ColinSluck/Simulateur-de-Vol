@@ -33,7 +33,7 @@ int main()
                 ovrPoseStatef tempHeadPose = ts.HeadPose;
                 ovrPosef tempPose = tempHeadPose.ThePose;
                 ovrQuatf tempOrient = tempPose.Orientation;
-
+                //ts.HeadPose.AngularVelocity
                 //rotation en quaternion 0.7 quand 90°
                 cout << std::fixed << std::setprecision(0) << "Orientation (x,y,z,w):  "
                      << COLW << (tempOrient.x*90)/0.7 << ","
