@@ -5,7 +5,7 @@
 #include <OVR_CAPI.h>
 #include <thread>
 
-#define COLW setw(15)
+#define COLW setw(5)
 
 using namespace std;
 
@@ -33,12 +33,19 @@ int main()
                 ovrPoseStatef tempHeadPose = ts.HeadPose;
                 ovrPosef tempPose = tempHeadPose.ThePose;
                 ovrQuatf tempOrient = tempPose.Orientation;
+                ovrVector3f tempAV = ts.HeadPose.AngularVelocity;
+
                 //ts.HeadPose.AngularVelocity
                 //rotation en quaternion 0.7 quand 90°
-                cout << std::fixed << std::setprecision(0) << "Orientation (x,y,z,w):  "
-                     << COLW << (tempOrient.x*90)/0.7 << ","
-                     << COLW << (tempOrient.y*90)/0.7 << "," << COLW << (tempOrient.z*90)/0.7
-                     << "," << COLW << tempOrient.w << endl;
+                cout << std::fixed << std::setprecision(0) << "Orientation (pitch,yaw,roll,w):"
+                     << COLW << (tempOrient.x*90)/0.7 << "\370,"
+                     << COLW << (tempOrient.y*90)/0.7 << "\370,"
+                     << COLW << (tempOrient.z*90)/0.7 << "\370\t"
+                     << std::setprecision(2)
+                     <<"Vitesse Angulaire (pitch,yaw,roll):"
+                     << COLW << tempAV.x << "Rad/s,"
+                     << COLW << tempAV.y << "Rad/s,"
+                     << COLW << tempAV.z << "Rad/s," << endl;
 
 
                 // Wait a bit to let us actually read stuff.
