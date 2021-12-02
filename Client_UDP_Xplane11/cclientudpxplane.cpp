@@ -1,14 +1,13 @@
 #include "CclientUDPXplane.h"
 
-CclientUDPXplane::CclientUDPXplane()
+CclientUDPXplane::CclientUDPXplane() : BufLen(0)
 {
     RecvAddr.sin_addr.s_addr = inet_addr("");
     RecvAddr.sin_port = htons(0);
     iResult = 0;
-    BufLen = 0;
+    roll = 0;
+    pitch = 0;
 }
-
-
 
 CclientUDPXplane::~CclientUDPXplane()
 {
@@ -66,41 +65,76 @@ void CclientUDPXplane::RecieveData()
     //-----------------------------------------------
     // Call the recvfrom function to receive datagrams
     // on the bound socket.
-    wprintf(L"Receiving datagrams...\n");
+    //wprintf(L"Receiving datagrams...\n");
     iResult = recvfrom(RecvSocket, RecvBuf, BufLen, 0, (SOCKADDR *) & SenderAddr, &SenderAddrSize);
     if (iResult == SOCKET_ERROR)
     {
         wprintf(L"recvfrom failed with error %d\n", WSAGetLastError());
     }
-    unsigned char pitch_char[4];
-    int x = 0;
+    pitch_IEEE = 0;
+    roll_IEEE = 0;
+    a = 3;
+    x = 0;
     for(int i=16; i>12; i--)
     {
-        pitch_char[x] = RecvBuf[i];
-        printf("%x ",pitch_char[x]);
+        roll_char[x] = RecvBuf[i];
+        roll_IEEE += roll_char[x]<<(8*a);
         x++;
+        a--;
     }
-    unsigned char roll_char[4];
+    a = 3;
     x = 0;
     for(int i=12; i>8; i--)
     {
-        roll_char[x] = RecvBuf[i];
-        printf("%x ",roll_char[x]);
+        pitch_char[x] = RecvBuf[i];
+        pitch_IEEE += pitch_char[x]<<(8*a);
         x++;
+        a--;
+    }
+    roll = this->convertIEEEtoFloat(roll_IEEE);
+    pitch = this->convertIEEEtoFloat(pitch_IEEE);
+
+}
+
+void CclientUDPXplane::printdata()
+{
+
+    printf("\npitch en hexa : 0x%x\tpitch reel en degre : %f\nroll en hexa : 0x%x\troll reel en degre : %f\n",pitch_IEEE,pitch,roll_IEEE,roll);
+}
+
+float CclientUDPXplane::convertIEEEtoFloat(int data_int)
+{
+    return *(float*)&data_int;
+}
+
+float CclientUDPXplane::getRollVolt()
+{
+    if(-5<=roll && roll<=5)
+    {
+        return(roll*2);
+    }
+    else if(roll<-5)
+    {
+        return(-10);
+    }
+    else
+    {
+        return(10);
     }
 }
 
-QString CclientUDPXplane::Convert(float &p_R)
+float CclientUDPXplane::getPitchVolt()
 {
-        unsigned char *p =(unsigned char *)&p_R;
-        QString oct1;
-        QString oct2;
-        QString oct3;
-        QString oct4;
-        oct1.setNum(*p,16);
-        oct2.setNum(*(p + 1), 16);
-        oct3.setNum(*(p + 2), 16);
-        oct4.setNum(*(p + 3), 16);
-        QString stringResult = oct1 + " " + oct2 + " " + oct3 + " " + oct4;
-        return(stringResult);
+    if(-5<=pitch && pitch<=5)
+    {
+        return(pitch * 2);
+    }
+    else if(pitch<-5)
+    {
+        return(-10);
+    }
+    else
+    {
+        return(10);
+    }
 }
