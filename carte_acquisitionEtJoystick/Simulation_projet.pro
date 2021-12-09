@@ -15,7 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main_timer.cpp
+    cusb_6xxx.cpp \
+    main.cpp \
+    main_generation_tension_base.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -27,5 +29,6 @@ LIBS += $$PWD\lib\NIDAQmx.lib
 LIBS += $$PWD\lib\libsfml-window.a
 CONFIG += debug_and_release debug_and_release_target
 
-HEADERS +=
+HEADERS += \
+    cusb_6xxx.h
 
