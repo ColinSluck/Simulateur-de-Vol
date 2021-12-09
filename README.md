@@ -27,4 +27,4 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
      style="width: 50%;" />
      
 ### Projets C++
-[![Generic badge](https://img.shields.io/badge/Projet-Oculus Data View-green.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Projet-Oculus%20Data%20View-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/oculus_data_view)
