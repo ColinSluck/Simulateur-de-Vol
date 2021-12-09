@@ -25,3 +25,6 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 <img src="assets/diagramme de deploiement.PNG"
      alt="diagramme de deploiement"
      style="width: 50%;" />
+     
+### Projets C++
+[![Generic badge](https://img.shields.io/badge/Projet-OculusDataView-green.svg)](https://shields.io/)
