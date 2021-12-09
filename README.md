@@ -15,13 +15,13 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 
 ### Diagrame de cas d'utilisation
 
-<img src="diagramme de cas utilisation.png"
+<img src="assets/diagramme de cas utilisation.png"
      alt="diagramme de cas utilisation"
      style="width: 50%;" />
      
      
 ### Diagramme de déploiement
 
-<img src="diagramme de deploiement.PNG"
+<img src="assets/diagramme de deploiement.PNG"
      alt="diagramme de deploiement"
      style="width: 50%;" />
