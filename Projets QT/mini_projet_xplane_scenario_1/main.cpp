@@ -14,10 +14,9 @@ int main()
     while(true)
     {
         data->RecieveData();
-        usb1->setAO0(data->getRollVolt());
+        usb1->setAO0(-1 * data->getRollVolt());
         usb1->setAO1(data->getPitchVolt());
         data->printdata();
-        printf("pitch : %f\t\troll : %f", data->getPitchVolt(), data->getRollVolt());
     }
     data->SocketOFF();
 

@@ -1,7 +1,7 @@
 /*============================================================================*/
 /*                 National Instruments / Data Acquisition                    */
 /*----------------------------------------------------------------------------*/
-/*    Copyright (c) National Instruments 2003-2019.  All Rights Reserved.     */
+/*    Copyright (c) National Instruments 2003-2017.  All Rights Reserved.     */
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /* Title:       NIDAQmx.h                                                     */
@@ -94,10 +94,6 @@
 #endif
 #endif
 
-
-#pragma pack(push)
-#pragma pack(4)
-
 #ifndef CVITime_DECLARED
 #define CVITime_DECLARED
 	// Please visit ni.com/info and enter the Info Code NI_BTF for more information
@@ -108,8 +104,6 @@
 	// Please visit ni.com/info and enter the Info Code NI_BTF for more information
 	typedef union CVIAbsoluteTime { CVITime cviTime; uInt32 u32Data[4]; } CVIAbsoluteTime;
 #endif
-
-#pragma pack(pop)
 
 typedef uInt32             bool32;
 
@@ -266,9 +260,6 @@ typedef uInt32             CalHandle;
 #define DAQmx_AI_ACExcit_Freq                                            0x0101 // Specifies the AC excitation frequency in Hertz.
 #define DAQmx_AI_ACExcit_SyncEnable                                      0x0102 // Specifies whether to synchronize the AC excitation source of the channel to that of another channel. Synchronize the excitation sources of multiple channels to use multichannel sensors. Set this property to FALSE for the master channel and to TRUE for the slave channels.
 #define DAQmx_AI_ACExcit_WireMode                                        0x18CD // Specifies the number of leads on the LVDT or RVDT. Some sensors require you to tie leads together to create a four- or five- wire sensor. Refer to the sensor documentation for more information.
-#define DAQmx_AI_SensorPower_Voltage                                     0x3169 // Specifies the voltage level for the sensor's power supply.
-#define DAQmx_AI_SensorPower_Cfg                                         0x316A // Specifies whether to turn on the sensor's power supply or to leave the configuration unchanged.
-#define DAQmx_AI_SensorPower_Type                                        0x316B // Specifies the type of power supplied to the sensor.
 #define DAQmx_AI_OpenThrmcplDetectEnable                                 0x2F72 // Specifies whether to apply the open thermocouple detection bias voltage to the channel. Changing the value of this property on a channel may require settling time before the data returned is valid. To compensate for this settling time, discard unsettled data or add a delay between committing and starting the task. Refer to your device specifications for the required settling time. When open thermocouple detection ...
 #define DAQmx_AI_Thrmcpl_LeadOffsetVoltage                               0x2FB8 // Specifies the lead offset nulling voltage to subtract from measurements on a device. This property is ignored if open thermocouple detection is disabled.
 #define DAQmx_AI_Atten                                                   0x1801 // Specifies the amount of attenuation to use.
@@ -337,7 +328,6 @@ typedef uInt32             CalHandle;
 #define DAQmx_AI_DevScalingCoeff                                         0x1930 // Indicates the coefficients of a polynomial equation that NI-DAQmx uses to scale values from the native format of the device to volts. Each element of the array corresponds to a term of the equation. For example, if index two of the array is 4, the third term of the equation is 4x^2. Scaling coefficients do not account for any custom scales or sensors contained by the channel.
 #define DAQmx_AI_EnhancedAliasRejectionEnable                            0x2294 // Specifies whether to enable enhanced alias rejection. Leave this property set to the default value for most applications.
 #define DAQmx_AI_OpenChanDetectEnable                                    0x30FF // Specifies whether to enable open channel detection.
-#define DAQmx_AI_OvercurrentDetectEnable                                 0x3194 // Specifies whether to enable overcurrent detection.
 #define DAQmx_AO_Max                                                     0x1186 // Specifies the maximum value you expect to generate. The value is in the units you specify with a units property. If you try to write a value larger than the maximum value, NI-DAQmx generates an error. NI-DAQmx might coerce this value to a smaller value if other task settings restrict the device from generating the desired maximum.
 #define DAQmx_AO_Min                                                     0x1187 // Specifies the minimum value you expect to generate. The value is in the units you specify with a units property. If you try to write a value smaller than the minimum value, NI-DAQmx generates an error. NI-DAQmx might coerce this value to a larger value if other task settings restrict the device from generating the desired minimum.
 #define DAQmx_AO_CustomScaleName                                         0x1188 // Specifies the name of a custom scale for the channel.
@@ -855,13 +845,6 @@ typedef uInt32             CalHandle;
 #define DAQmx_PhysicalChan_AI_SupportedMeasTypes                         0x2FD7 // Indicates the measurement types supported by the channel.
 #define DAQmx_PhysicalChan_AI_TermCfgs                                   0x2342 // Indicates the list of terminal configurations supported by the channel.
 #define DAQmx_PhysicalChan_AI_InputSrcs                                  0x2FD8 // Indicates the list of input sources supported by the channel. Channels may support using the signal from the I/O connector or one of several calibration signals.
-#define DAQmx_PhysicalChan_AI_SensorPower_Types                          0x3179 // Indicates the types of power supplied to the sensor supported by this channel.
-#define DAQmx_PhysicalChan_AI_SensorPower_VoltageRangeVals               0x317A // Indicates pairs of sensor power voltage ranges supported by this channel. Each pair consists of the low value followed by the high value.
-#define DAQmx_PhysicalChan_AI_PowerControl_Voltage                       0x316C // Specifies the voltage level for the sensor's power supply.
-#define DAQmx_PhysicalChan_AI_PowerControl_Enable                        0x316D // Specifies whether to turn on the sensor's power supply.
-#define DAQmx_PhysicalChan_AI_PowerControl_Type                          0x316E // Specifies the type of power supplied to the sensor.
-#define DAQmx_PhysicalChan_AI_SensorPower_OpenChan                       0x317C // Indicates whether there is an open channel or undercurrent condition on the channel.
-#define DAQmx_PhysicalChan_AI_SensorPower_Overcurrent                    0x317D // Indicates whether there is an overcurrent condition on the channel.
 #define DAQmx_PhysicalChan_AO_SupportedOutputTypes                       0x2FD9 // Indicates the output types supported by the channel.
 #define DAQmx_PhysicalChan_AO_SupportedPowerUpOutputTypes                0x304E // Indicates the power up output types supported by the channel.
 #define DAQmx_PhysicalChan_AO_TermCfgs                                   0x29A3 // Indicates the list of terminal configurations supported by the channel.
@@ -1077,8 +1060,6 @@ typedef uInt32             CalHandle;
 #define DAQmx_FirstSampTimestamp_Enable                                  0x3139 // Specifies whether to enable the first sample timestamp.
 #define DAQmx_FirstSampTimestamp_Timescale                               0x313B // Specifies the timescale to be used for the first sample timestamp.
 #define DAQmx_FirstSampTimestamp_Val                                     0x313A // Indicates the timestamp of the first sample.
-#define DAQmx_FirstSampClk_When                                          0x3182 // Specifies the time of the first sample clock pulse.
-#define DAQmx_FirstSampClk_Timescale                                     0x3183 // Specifies the timescale to be used for the value of When.
 
 //********** Trigger Attributes **********
 #define DAQmx_StartTrig_Type                                             0x1393 // Specifies the type of trigger to use to start a task.
@@ -1905,8 +1886,6 @@ typedef uInt32             CalHandle;
 //*** Value set FilterResponse1 ***
 #define DAQmx_Val_Comb                                                    16152 // Comb
 #define DAQmx_Val_Bessel                                                  16153 // Bessel
-#define DAQmx_Val_Brickwall                                               16155 // Brickwall
-#define DAQmx_Val_Butterworth                                             16076 // Butterworth
 
 //*** Values for DAQmx_AI_Force_IEPESensor_SensitivityUnits ***
 //*** Value set ForceIEPESensorSensitivityUnits ***
@@ -2246,20 +2225,6 @@ typedef uInt32             CalHandle;
 #define DAQmx_Val_Table                                                   10450 // Table
 #define DAQmx_Val_Polynomial                                              10449 // Polynomial
 
-//*** Values for DAQmx_AI_SensorPower_Cfg ***
-//*** Value set SensorPowerCfg ***
-#define DAQmx_Val_NoChange                                                10160 // No Change
-#define DAQmx_Val_Enabled                                                 16145 // Enabled
-#define DAQmx_Val_Disabled                                                16146 // Disabled
-
-//*** Values for DAQmx_AI_SensorPower_Type ***
-//*** Values for DAQmx_PhysicalChan_AI_SensorPower_Types ***
-//*** Values for DAQmx_PhysicalChan_AI_PowerControl_Type ***
-//*** Value set SensorPowerType ***
-#define DAQmx_Val_DC                                                      10050 // DC
-#define DAQmx_Val_AC                                                      10045 // AC
-#define DAQmx_Val_BipolarDC                                               16147 // BipolarDC
-
 //*** Values for DAQmx_AI_Bridge_ShuntCal_Select ***
 //*** Value set ShuntCalSelect ***
 #define DAQmx_Val_A                                                       12513 // A
@@ -2398,7 +2363,6 @@ typedef uInt32             CalHandle;
 
 //*** Values for DAQmx_SyncPulse_Time_Timescale ***
 //*** Values for DAQmx_FirstSampTimestamp_Timescale ***
-//*** Values for DAQmx_FirstSampClk_Timescale ***
 //*** Values for DAQmx_StartTrig_Timescale ***
 //*** Values for DAQmx_StartTrig_TimestampTimescale ***
 //*** Values for DAQmx_RefTrig_TimestampTimescale ***
@@ -3339,29 +3303,10 @@ int32 __CFUNC     DAQmxAdjust4357Cal             (CalHandle calHandle, const cha
 int32 __CFUNC     DAQmxSetup4322Cal              (CalHandle calHandle, const char channelNames[], int32 outputType, float64 outputVal);
 int32 __CFUNC     DAQmxAdjust4322Cal              (CalHandle calHandle, const char channelNames[], float64 refVal);
 int32 __CFUNC     DAQmxGet4322CalAdjustPoints     (CalHandle calHandle, int32 outputType, float64* adjustmentPoints, uInt32 bufferSize);
-
 int32 __CFUNC     DAQmxConnectSCExpressCalAccChans             (CalHandle calHandle, const char channelNames[], const char connection[]);
 int32 __CFUNC     DAQmxDisconnectSCExpressCalAccChans          (CalHandle calHandle);
 int32 __CFUNC     DAQmxGetPossibleSCExpressCalAccConnections   (const char deviceName[], const char channelNames[], char *connections, uInt32 connectionsBufferSize);
 int32 __CFUNC     DAQmxSetSCExpressCalAccBridgeOutput          (CalHandle calHandle, float64 voltsPerVolt);
-
-int32 __CFUNC     DAQmxFieldDAQSetCalTemp         (CalHandle calHandle, float64 temperature);
-int32 __CFUNC     DAQmxGet11601CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11601Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet11603CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11603Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxSetup11605Cal              (CalHandle calHandle, float64 rangeMin, float64 rangeMax);
-int32 __CFUNC     DAQmxGet11605CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11605Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet11613CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11613Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet11614CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11614Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxSetup11634Cal              (CalHandle calHandle, float64 rangeMin, float64 rangeMax);
-int32 __CFUNC     DAQmxGet11634CalAdjustPoints    (CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust11634Cal             (CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxSetup11637Cal              (CalHandle calHandle, const char channelNames[], int32 bridgeConfig, float64 voltageExcitation);
-int32 __CFUNC     DAQmxAdjust11637Cal             (CalHandle calHandle, float64 value, float64* actualReading, float64* asFoundGainError, float64* asFoundOffsetError);
 
 int32 __CFUNC     DAQmxGet9201CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxCSeriesSetCalTemp(CalHandle calHandle, float64 temperature);
@@ -3424,8 +3369,6 @@ int32 __CFUNC     DAQmxGet9229CalAdjustPoints(CalHandle calHandle, float64* adju
 int32 __CFUNC     DAQmxAdjust9229Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9230CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxAdjust9230Cal(CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet9231CalAdjustPoints(CalHandle calHandle, float64 *adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust9231Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9232CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxAdjust9232Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9234CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
@@ -3449,10 +3392,6 @@ int32 __CFUNC     DAQmxGet9250CalAdjustPoints(CalHandle calHandle, float64* adju
 int32 __CFUNC     DAQmxAdjust9250Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9251CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxAdjust9251Cal(CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet9252CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust9252Cal(CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet9253CalAdjustPoints(CalHandle calHandle, float64* adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxAdjust9253Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9260CalAdjustPoints(CalHandle calHandle, int32* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxSetup9260Cal(CalHandle calHandle, const char channelNames[], int32 value);
 int32 __CFUNC     DAQmxAdjust9260Cal(CalHandle calHandle, const char channelNames[], float64 value);
@@ -3465,9 +3404,6 @@ int32 __CFUNC     DAQmxAdjust9264Cal(CalHandle calHandle, const char channelName
 int32 __CFUNC     DAQmxGet9265CalAdjustPoints(CalHandle calHandle, int32* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxSetup9265Cal(CalHandle calHandle, const char channelNames[], int32 value);
 int32 __CFUNC     DAQmxAdjust9265Cal(CalHandle calHandle, const char channelNames[], float64 value);
-int32 __CFUNC     DAQmxGet9266CalAdjustPoints(CalHandle calHandle, int32* adjustmentPoints, uInt32 bufferSize);
-int32 __CFUNC     DAQmxSetup9266Cal(CalHandle calHandle, const char channelNames[], int32 value);
-int32 __CFUNC     DAQmxAdjust9266Cal(CalHandle calHandle, const char channelNames[], float64 value);
 int32 __CFUNC     DAQmxGet9269CalAdjustPoints(CalHandle calHandle, int32* adjustmentPoints, uInt32 bufferSize);
 int32 __CFUNC     DAQmxSetup9269Cal(CalHandle calHandle, const char channelNames[], int32 value);
 int32 __CFUNC     DAQmxAdjust9269Cal(CalHandle calHandle, const char channelNames[], float64 value);
@@ -4155,20 +4091,6 @@ int32 __CFUNC DAQmxResetAIACExcitSyncEnable(TaskHandle taskHandle, const char ch
 int32 __CFUNC DAQmxGetAIACExcitWireMode(TaskHandle taskHandle, const char channel[], int32 *data);
 int32 __CFUNC DAQmxSetAIACExcitWireMode(TaskHandle taskHandle, const char channel[], int32 data);
 int32 __CFUNC DAQmxResetAIACExcitWireMode(TaskHandle taskHandle, const char channel[]);
-//*** Set/Get functions for DAQmx_AI_SensorPower_Voltage ***
-int32 __CFUNC DAQmxGetAISensorPowerVoltage(TaskHandle taskHandle, const char channel[], float64 *data);
-int32 __CFUNC DAQmxSetAISensorPowerVoltage(TaskHandle taskHandle, const char channel[], float64 data);
-int32 __CFUNC DAQmxResetAISensorPowerVoltage(TaskHandle taskHandle, const char channel[]);
-//*** Set/Get functions for DAQmx_AI_SensorPower_Cfg ***
-// Uses value set SensorPowerCfg
-int32 __CFUNC DAQmxGetAISensorPowerCfg(TaskHandle taskHandle, const char channel[], int32 *data);
-int32 __CFUNC DAQmxSetAISensorPowerCfg(TaskHandle taskHandle, const char channel[], int32 data);
-int32 __CFUNC DAQmxResetAISensorPowerCfg(TaskHandle taskHandle, const char channel[]);
-//*** Set/Get functions for DAQmx_AI_SensorPower_Type ***
-// Uses value set SensorPowerType
-int32 __CFUNC DAQmxGetAISensorPowerType(TaskHandle taskHandle, const char channel[], int32 *data);
-int32 __CFUNC DAQmxSetAISensorPowerType(TaskHandle taskHandle, const char channel[], int32 data);
-int32 __CFUNC DAQmxResetAISensorPowerType(TaskHandle taskHandle, const char channel[]);
 //*** Set/Get functions for DAQmx_AI_OpenThrmcplDetectEnable ***
 int32 __CFUNC DAQmxGetAIOpenThrmcplDetectEnable(TaskHandle taskHandle, const char channel[], bool32 *data);
 int32 __CFUNC DAQmxSetAIOpenThrmcplDetectEnable(TaskHandle taskHandle, const char channel[], bool32 data);
@@ -4440,10 +4362,6 @@ int32 __CFUNC DAQmxResetAIEnhancedAliasRejectionEnable(TaskHandle taskHandle, co
 int32 __CFUNC DAQmxGetAIOpenChanDetectEnable(TaskHandle taskHandle, const char channel[], bool32 *data);
 int32 __CFUNC DAQmxSetAIOpenChanDetectEnable(TaskHandle taskHandle, const char channel[], bool32 data);
 int32 __CFUNC DAQmxResetAIOpenChanDetectEnable(TaskHandle taskHandle, const char channel[]);
-//*** Set/Get functions for DAQmx_AI_OvercurrentDetectEnable ***
-int32 __CFUNC DAQmxGetAIOvercurrentDetectEnable(TaskHandle taskHandle, const char channel[], bool32 *data);
-int32 __CFUNC DAQmxSetAIOvercurrentDetectEnable(TaskHandle taskHandle, const char channel[], bool32 data);
-int32 __CFUNC DAQmxResetAIOvercurrentDetectEnable(TaskHandle taskHandle, const char channel[]);
 //*** Set/Get functions for DAQmx_AO_Max ***
 int32 __CFUNC DAQmxGetAOMax(TaskHandle taskHandle, const char channel[], float64 *data);
 int32 __CFUNC DAQmxSetAOMax(TaskHandle taskHandle, const char channel[], float64 data);
@@ -6378,28 +6296,6 @@ int32 __CFUNC DAQmxGetPhysicalChanAISupportedMeasTypes(const char physicalChanne
 int32 __CFUNC DAQmxGetPhysicalChanAITermCfgs(const char physicalChannel[], int32 *data);
 //*** Set/Get functions for DAQmx_PhysicalChan_AI_InputSrcs ***
 int32 __CFUNC DAQmxGetPhysicalChanAIInputSrcs(const char physicalChannel[], char *data, uInt32 bufferSize);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_SensorPower_Types ***
-// Uses value set SensorPowerType
-int32 __CFUNC DAQmxGetPhysicalChanAISensorPowerTypes(const char physicalChannel[], int32 *data, uInt32 arraySizeInElements);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_SensorPower_VoltageRangeVals ***
-int32 __CFUNC DAQmxGetPhysicalChanAISensorPowerVoltageRangeVals(const char physicalChannel[], float64 *data, uInt32 arraySizeInElements);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_PowerControl_Voltage ***
-int32 __CFUNC DAQmxGetPhysicalChanAIPowerControlVoltage(const char physicalChannel[], float64 *data);
-int32 __CFUNC DAQmxSetPhysicalChanAIPowerControlVoltage(const char physicalChannel[], float64 data);
-int32 __CFUNC DAQmxResetPhysicalChanAIPowerControlVoltage(const char physicalChannel[]);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_PowerControl_Enable ***
-int32 __CFUNC DAQmxGetPhysicalChanAIPowerControlEnable(const char physicalChannel[], bool32 *data);
-int32 __CFUNC DAQmxSetPhysicalChanAIPowerControlEnable(const char physicalChannel[], bool32 data);
-int32 __CFUNC DAQmxResetPhysicalChanAIPowerControlEnable(const char physicalChannel[]);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_PowerControl_Type ***
-// Uses value set SensorPowerType
-int32 __CFUNC DAQmxGetPhysicalChanAIPowerControlType(const char physicalChannel[], int32 *data);
-int32 __CFUNC DAQmxSetPhysicalChanAIPowerControlType(const char physicalChannel[], int32 data);
-int32 __CFUNC DAQmxResetPhysicalChanAIPowerControlType(const char physicalChannel[]);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_SensorPower_OpenChan ***
-int32 __CFUNC DAQmxGetPhysicalChanAISensorPowerOpenChan(const char physicalChannel[], bool32 *data);
-//*** Set/Get functions for DAQmx_PhysicalChan_AI_SensorPower_Overcurrent ***
-int32 __CFUNC DAQmxGetPhysicalChanAISensorPowerOvercurrent(const char physicalChannel[], bool32 *data);
 //*** Set/Get functions for DAQmx_PhysicalChan_AO_SupportedOutputTypes ***
 // Uses value set AOOutputChannelType
 int32 __CFUNC DAQmxGetPhysicalChanAOSupportedOutputTypes(const char physicalChannel[], int32 *data, uInt32 arraySizeInElements);
@@ -7057,15 +6953,6 @@ int32 __CFUNC DAQmxSetFirstSampTimestampTimescale(TaskHandle taskHandle, int32 d
 int32 __CFUNC DAQmxResetFirstSampTimestampTimescale(TaskHandle taskHandle);
 //*** Set/Get functions for DAQmx_FirstSampTimestamp_Val ***
 int32 __CFUNC DAQmxGetFirstSampTimestampVal(TaskHandle taskHandle, CVIAbsoluteTime *data);
-//*** Set/Get functions for DAQmx_FirstSampClk_When ***
-int32 __CFUNC DAQmxGetFirstSampClkWhen(TaskHandle taskHandle, CVIAbsoluteTime *data);
-int32 __CFUNC DAQmxSetFirstSampClkWhen(TaskHandle taskHandle, CVIAbsoluteTime data);
-int32 __CFUNC DAQmxResetFirstSampClkWhen(TaskHandle taskHandle);
-//*** Set/Get functions for DAQmx_FirstSampClk_Timescale ***
-// Uses value set Timescale2
-int32 __CFUNC DAQmxGetFirstSampClkTimescale(TaskHandle taskHandle, int32 *data);
-int32 __CFUNC DAQmxSetFirstSampClkTimescale(TaskHandle taskHandle, int32 data);
-int32 __CFUNC DAQmxResetFirstSampClkTimescale(TaskHandle taskHandle);
 
 //********** Trigger **********
 //*** Set/Get functions for DAQmx_StartTrig_Type ***
@@ -7821,19 +7708,6 @@ int32 __CFUNC DAQmxResetSampClkTimingResponseMode(TaskHandle taskHandle);
 #define DAQmxFailed(error)                            ((error)<0)
 
 // Error and Warning Codes
-#define DAQmxErrorTaskAlreadyRegisteredATimingSource                                    (-209870)
-#define DAQmxErrorFilterNotSupportedOnHWRev                                             (-209869)
-#define DAQmxErrorSensorPowerSupplyVoltageLevel                                         (-209868)
-#define DAQmxErrorSensorPowerSupply                                                     (-209867)
-#define DAQmxErrorInvalidScanlist                                                       (-209866)
-#define DAQmxErrorTimeResourceCannotBeRouted                                            (-209865)
-#define DAQmxErrorInvalidResetDelayRequested                                            (-209864)
-#define DAQmxErrorExceededTotalTimetriggersAvailable                                    (-209863)
-#define DAQmxErrorExceededTotalTimestampsAvailable                                      (-209862)
-#define DAQmxErrorNoSynchronizationProtocolRunning                                      (-209861)
-#define DAQmxErrorConflictingCoherencyRequirements                                      (-209860)
-#define DAQmxErrorNoSharedTimescale                                                     (-209859)
-#define DAQmxErrorInvalidFieldDAQBankName                                               (-209858)
 #define DAQmxErrorDeviceDoesNotSupportHWTSP                                             (-209857)
 #define DAQmxErrorBankTypeDoesNotMatchBankTypeInDestination                             (-209856)
 #define DAQmxErrorInvalidFieldDAQBankNumberSpecd                                        (-209855)
@@ -9453,7 +9327,6 @@ int32 __CFUNC DAQmxResetSampClkTimingResponseMode(TaskHandle taskHandle);
 #define DAQmxWarningWaitForNextSampClkDetectedMissedSampClk                              (209802)
 #define DAQmxWarningOutputDataTransferConditionNotSupported                              (209803)
 #define DAQmxWarningTimestampMayBeInvalid                                                (209804)
-#define DAQmxWarningFirstSampleTimestampInaccurate                                       (209805)
 #define DAQmxErrorInterfaceObsoleted_Routing                                             (-89169)
 #define DAQmxErrorRoCoServiceNotAvailable_Routing                                        (-89168)
 #define DAQmxErrorRoutingDestTermPXIDStarXNotInSystemTimingSlot_Routing                  (-89167)

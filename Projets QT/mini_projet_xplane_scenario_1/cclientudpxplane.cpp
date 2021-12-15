@@ -98,8 +98,7 @@ void CclientUDPXplane::RecieveData()
 
 void CclientUDPXplane::printdata()
 {
-
-    printf("\npitch en hexa : 0x%x\tpitch reel en degre : %f\nroll en hexa : 0x%x\troll reel en degre : %f\n",pitch_IEEE,pitch,roll_IEEE,roll);
+    printf("Roll reel : %.2f\tRoll volt : %.2f\t|\tPitch reel : %.2f\tPitch volt : %.2f\n",roll,getRollVolt(),pitch,getPitchVolt());
 }
 
 float CclientUDPXplane::convertIEEEtoFloat(int data_int)
