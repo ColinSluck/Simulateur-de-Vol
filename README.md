@@ -32,7 +32,7 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 
 Pour communiquer, lors de son lancement, le jeu créé un serveur udp. Il faudrat donc commencer par comprendre les données envoyer par le serveur et récupérer le "pitch" et le "roll"(tangage et roulis).
 
-1. Relever de trame Wireshark
+### 1. Relever de trame Wireshark
 
 Pour relever les valeur de pitch et de roll (tanguage et rouli) envoyer par le serveur udp de xplane il faut :
 lancer le jeu puis lancer une nouvelle partie puis apuyer sur échap, un menu vas s'ouvrir en haut de l'écran aller dans les paramètre en apuyant sur le bouton suivant
@@ -40,6 +40,30 @@ lancer le jeu puis lancer une nouvelle partie puis apuyer sur échap, un menu va
 <img src="assets/scenario1/1/1.png"/>
 
 ensuite dans le menu Donnée sortante coché les cases "dans le cockpit" et "réseau UDP" à la ligne 17 (pitch roll and hidding) puis cocher la case "Envoyer les données sur le réseau" à droite dans configutration du réseau ensuite entrer en adresse ip : 127.0.0.1  et en port 49001.
+
+<img src="assets/scenario1/1/2.png"/>
+
+Ensuite lancer une capture wireshark et relever sur Adaptater loopback trafic capture.
+
+<img src="assets/scenario1/1/3.png"/>
+
+En filtre mettre : udp and ip.addr==127.0.0.1 pour filtrer les trame udp qui nous intéresse.
+
+<img src="assets/scenario1/1/4.png"/>
+
+on à donc maintenant un relever de trame qu'il va faloir interpréter pour resortir le pitch et le roll que nous voulons.
+
+<img src="assets/scenario1/1/5.png"/>
+
+Pour le trouver il va faloir prendre le 17ème octet de notre trame, dans ce cas "40" puis lire de droite a gauche les 4 premier octet en partant donc du 17ème soit dans ce cas 40 06 5f 3a qui nous donnera le roll puis les 4 suivants toujours de droite à gauche soit dans ce cas 3f b8 e4 23 qui nous donnera le pitch. Après avoir relever ces deux valeur en hexa il va faloir les convertir en float pour trouvé la valeur en degré.
+
+### 2. Client UDP
+
+Ensuite il nous faut créer le client udp nous permettant de recevoir les données du serveur du jeu.
+
+Pour cela nous commençons par créer un objet :
+
+<img src="assets/scenario1/2/1.png"/>
      
 ### Projets C++
 [![Generic badge](https://img.shields.io/badge/Projet-Oculus%20Data%20View-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/oculus_data_view)
