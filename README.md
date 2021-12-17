@@ -11,7 +11,9 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 
 ### Liste logiciels
 -	Qt Creator
--	Ni MAX
+-    Ni MAX
+-    Wireshark
+-    DB Browser for SQLite
 
 ### Diagrame de cas d'utilisation
 
@@ -25,6 +27,12 @@ Project scolaire, creation d'un simulateur de vol/XPlane/OculusRift
 <img src="assets/diagramme de deploiement.PNG"
      alt="diagramme de deploiement"
      style="width: 50%;" />
+
+## Presentation scénario 1
+
+Pour communiquer, lors de son lancement, le jeu créé un serveur udp. Il faudrat donc commencer par comprendre les données envoyer par le serveur et récupérer le "pitch" et le "roll"(tangage et roulis).
+
+
      
 ### Projets C++
 [![Generic badge](https://img.shields.io/badge/Projet-Oculus%20Data%20View-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/oculus_data_view)
