@@ -41,7 +41,7 @@ lancer le jeu puis lancer une nouvelle partie puis apuyer sur échap, un menu va
 
 ensuite dans le menu Donnée sortante coché les cases "dans le cockpit" et "réseau UDP" à la ligne 17 (pitch roll and hidding) puis cocher la case "Envoyer les données sur le réseau" à droite dans configutration du réseau ensuite entrer en adresse ip : 127.0.0.1  et en port 49001.
 
-<img src="assets/scenario1/1/2.png"/>
+<img src="assets/scenario1/1/2.png" style="width: 50%;"/>
 
 Ensuite lancer une capture wireshark et relever sur Adaptater loopback trafic capture.
 
@@ -64,8 +64,30 @@ Ensuite il nous faut créer le client udp nous permettant de recevoir les donné
 Pour cela nous commençons par créer un objet :
 
 <img src="assets/scenario1/2/1.png"/>
-     
-### Projets C++
+
+RecvAddr.sin_addr.s_addr = inet_addr("");
+RecvAddr.sin_port = htons(0);
+
+Ces deux ligne nous permettent de choisir l'adresse ip et le port du serveur pour que le client puisse s'y connecté, BufLen est la taille du buffer.
+Nous avons choisi de ne pas mettre les valeur d'ip et de port directement dans l'objet mais de faire une méthode configuration pour les changer.
+
+<img src="assets/scenario1/2/2.png"/>
+
+Ensuite viennent les méthode de connection et déconnection au socket.
+
+<img src="assets/scenario1/2/3.png" style="width: 50%;"/>
+
+Nous arrivons donc maintenant à nous connecté au serveur udp du jeu, il nous faut donc maintenant recevoir les données que nous souhaitons ( pitch and roll ). Pour ce faire nous avons fait une méthode datarecive :Les data sont recue en chaîne de caractère et sont stocké dans un tableau puis sont convertient en float grâce a l'appel de la méthode de convertion suivante :
+
+<img src="assets/scenario1/2/4.png"/>
+
+Dans notre main notre code vas donc se présenter comme ci-dessous.
+
+<img src="assets/scenario1/2/5.png" style="width: 50%;"/>
+
+Nous créons un objet data puis le configurons à l'adresse 127.0.0.1, sur le port 49001, et avec une taille de buffer de 41. Nous nous connectons au socket puis entamons une boucle infini "While(true)" dans laquelle nous recevons les données du serveur et de les afficher dans la console.
+
+## Projets C++
 [![Generic badge](https://img.shields.io/badge/Projet-Oculus%20Data%20View-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/oculus_data_view)
 [![Generic badge](https://img.shields.io/badge/Projet-Carte%20acquistion%20+%20Joystick-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/carte_acquisitionEtJoystick)
 [![Generic badge](https://img.shields.io/badge/Projet-Client%20udp%20Xplane-green.svg)](https://github.com/ColinSluck/Simulateur-de-Vol/tree/main/Projets%20QT/Client_UDP_Xplane11)
