@@ -37,7 +37,7 @@ Pour communiquer, lors de son lancement, le jeu créé un serveur udp. Il faudra
 Pour relever les valeur de pitch et de roll (tanguage et rouli) envoyer par le serveur udp de xplane il faut :
 lancer le jeu puis lancer une nouvelle partie puis apuyer sur échap, un menu vas s'ouvrir en haut de l'écran aller dans les paramètre en apuyant sur le bouton suivant
 
-<img src="assets/1/1.png"/>
+<img src="assets/scenario1/1/1.png"/>
 
 ensuite dans le menu Donnée sortante coché les cases "dans le cockpit" et "réseau UDP" à la ligne 17 (pitch roll and hidding) puis cocher la case "Envoyer les données sur le réseau" à droite dans configutration du réseau ensuite entrer en adresse ip : 127.0.0.1  et en port 49001.
      
