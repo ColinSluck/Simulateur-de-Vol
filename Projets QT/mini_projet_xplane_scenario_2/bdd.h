@@ -19,7 +19,7 @@ public:
 
     BDD();
     ~BDD();
-   void Donnees(float,float,float,float,float,float,float,float);
+   void Donnees(double,float,float,float,float,float,float,float,float,float,float);
    void CLEAR();
    void initialisation();
 

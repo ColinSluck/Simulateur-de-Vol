@@ -27,26 +27,29 @@ void BDD::initialisation()
         qDebug()<<"drive name"<<m_db.driverName();
     }
 }
-void BDD::Donnees(float pitch, float roll, float AngleR, float AngleP, float AngleY, float VitesseR, float VitesseP, float VitesseY)
+void BDD::Donnees(double temps, float PlanePitch, float PlaneRoll, float PlanePitchVolt, float PlaneRollVolt, float OculusRoll, float OculusPitch, float OculusYaw, float OculusSpeedRoll,
+                  float OculusSpeedPitch, float OculusSpeedYaw)
 {
-    struct tm* ptr;
-    time_t t;
-    t = time(NULL);
-    ptr = gmtime(&t);
-    printf("%s", asctime(ptr));
+//    struct tm* ptr;
+//    time_t t;
+//    t = time(NULL);
+//    ptr = gmtime(&t);
+//    printf("%s", asctime(ptr));
 
 
 
-    query->prepare("INSERT INTO donnees_de_simulation VALUES(?,?,?,?,?,?,?,?,?)");
-    query->bindValue(0,(asctime(ptr)));
-    query->bindValue(1,pitch);
-    query->bindValue(2,roll);
-    query->bindValue(3,AngleR);
-    query->bindValue(4,AngleP);
-    query->bindValue(5,AngleY);
-    query->bindValue(6,VitesseR);
-    query->bindValue(7,VitesseP);
-    query->bindValue(8,VitesseY);
+    query->prepare("INSERT INTO donnees_de_simulation VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+    query->bindValue(0,temps);
+    query->bindValue(1,PlanePitch);
+    query->bindValue(2,PlaneRoll);
+    query->bindValue(3,PlanePitchVolt);
+    query->bindValue(4,PlaneRollVolt);
+    query->bindValue(5,OculusRoll);
+    query->bindValue(6,OculusPitch);
+    query->bindValue(7,OculusYaw);
+    query->bindValue(8,OculusSpeedRoll);
+    query->bindValue(9,OculusSpeedPitch);
+    query->bindValue(10,OculusSpeedYaw);
 
     query->exec();
 

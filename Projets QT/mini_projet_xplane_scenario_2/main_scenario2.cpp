@@ -2,9 +2,11 @@
 #include "cusb_6xxx.h"
 #include "bdd.h"
 #include "oculus.h"
-
+#include <QTimer>
 int main()
 {
+    QTimer timer;
+    timer.start();
 
     CUsb_6xxx *usb1=new CUsb_6xxx;
     usb1->configuration("Simulation","Dev6/ao0","ao0");
@@ -21,6 +23,7 @@ int main()
     db->initialisation();
     db->CLEAR();
 
+    auto start = std::chrono::system_clock::now();
     while(true)
     {
         data->RecieveData();
@@ -31,9 +34,18 @@ int main()
         dataOculus.refreshData();
         dataOculus.printData();
 
-        db->Donnees(data->getRollVolt(), data->getPitchVolt(),
+        auto end = std::chrono::system_clock::now();
+        std::chrono::duration<double> elapsed = end - start;
+
+        db->Donnees(elapsed.count(),
+                    data->getPitch(), data->getRoll(),
+                    data->getPitchVolt(), data->getRollVolt(),
                     dataOculus.getRoll(), dataOculus.getPitch(), dataOculus.getYaw(),
                     dataOculus.getRollVitesse(), dataOculus.getPitchVitesse(), dataOculus.getYawVitesse());
+
+
+
+
     }
     data->SocketOFF();
 
