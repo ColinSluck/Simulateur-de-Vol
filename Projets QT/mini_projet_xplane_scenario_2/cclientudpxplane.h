@@ -41,6 +41,8 @@ class CclientUDPXplane
         void configuration(const char*,int,int);
         void printdata();
         float convertIEEEtoFloat(int data_int);
+        float getPitch();
+        float getRoll();
         float getRollVolt();
         float getPitchVolt();
 };

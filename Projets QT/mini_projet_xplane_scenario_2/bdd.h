@@ -13,13 +13,15 @@ class BDD
 private:
 
  QSqlDatabase m_db;
- QSqlQuery query;
+ QSqlQuery *query = new QSqlQuery(m_db);
 
 public:
 
     BDD();
     ~BDD();
-   void Donnees(float,float);
+   void Donnees(float,float,float,float,float,float,float,float);
+   void CLEAR();
+   void initialisation();
 
 };
 

@@ -37,6 +37,7 @@ public:
     //Sortie Ao1
     void setAO1(double p_tension);
     //Arrêt acquisition
+    void printError(int32);
     void stopAcquisition();
     //Suppression de la tâche d'acquisition
     void clearAcquisition();

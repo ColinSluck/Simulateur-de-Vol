@@ -99,7 +99,7 @@ void CclientUDPXplane::RecieveData()
 void CclientUDPXplane::printdata()
 {
 
-    printf("\npitch en hexa : 0x%x\tpitch reel en degre : %f\nroll en hexa : 0x%x\troll reel en degre : %f\n",pitch_IEEE,pitch,roll_IEEE,roll);
+    printf("Roll reel : %.2f\tRoll volt : %.2f\t|\tPitch reel : %.2f\tPitch volt : %.2f\n",roll,getRollVolt(),pitch,getPitchVolt());
 }
 
 float CclientUDPXplane::convertIEEEtoFloat(int data_int)
@@ -107,34 +107,38 @@ float CclientUDPXplane::convertIEEEtoFloat(int data_int)
     return *(float*)&data_int;
 }
 
+float CclientUDPXplane::getPitch() { return pitch; }
+
+float CclientUDPXplane::getRoll() { return roll; }
+
 float CclientUDPXplane::getRollVolt()
 {
-    if(-5<=roll && roll<=5)
+    if(-4.5<=roll && roll<=4.5)
     {
         return(roll*2);
     }
-    else if(roll<-5)
+    else if(roll<-4.5)
     {
-        return(-10);
+        return(-9);
     }
     else
     {
-        return(10);
+        return(9);
     }
 }
 
 float CclientUDPXplane::getPitchVolt()
 {
-    if(-5<=pitch && pitch<=5)
+    if(-4.5<=pitch && pitch<=4.5)
     {
         return(pitch * 2);
     }
-    else if(pitch<-5)
+    else if(pitch<-4.5)
     {
-        return(-10);
+        return(-9);
     }
     else
     {
-        return(10);
+        return(9);
     }
 }

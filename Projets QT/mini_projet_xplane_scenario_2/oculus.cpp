@@ -18,9 +18,7 @@ void Oculus::initialisation()
             // Let's take a look at some orientation data.
             ovr_RecenterTrackingOrigin(session);
         }
-        ovr_Shutdown();
-        // If we've fallen through to this point, the HMD is no longer
-        // connected.
+
     }
 }
 
@@ -43,7 +41,7 @@ void Oculus::refreshData()
     vAngulaire[2] = tempAV.z;
 
     // Wait a bit to let us actually read stuff.
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
 void Oculus::stop()

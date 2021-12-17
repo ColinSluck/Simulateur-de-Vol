@@ -21,7 +21,7 @@ SOURCES += \
         BDD.cpp \
         cclientudpxplane.cpp \
         cusb_6xxx.cpp \
-        main.cpp \
+        main_scenario2.cpp \
         oculus.cpp
 
 # Default rules for deployment.

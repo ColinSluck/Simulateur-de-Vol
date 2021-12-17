@@ -3,6 +3,7 @@
 
 Oculus::Oculus()
 {
+    session = nullptr;
 }
 
 void Oculus::initialisation()
@@ -18,9 +19,6 @@ void Oculus::initialisation()
             // Let's take a look at some orientation data.
             ovr_RecenterTrackingOrigin(session);
         }
-        ovr_Shutdown();
-        // If we've fallen through to this point, the HMD is no longer
-        // connected.
     }
 }
 
@@ -48,7 +46,11 @@ void Oculus::refreshData()
 
 void Oculus::stop()
 {
+
     ovr_Destroy(session);
+    ovr_Shutdown();
+    // If we've fallen through to this point, the HMD is no longer
+    // connected.
     ovr_Shutdown();
     // If we've fallen through to this point, the HMD is no longer
     // connected.
