@@ -37,6 +37,7 @@ CONFIG += debug_and_release debug_and_release_target
 
 INCLUDEPATH += "$$PWD/include"
 
+RC_ICONS = simulation.ico
 
 HEADERS += \
     bdd.h \

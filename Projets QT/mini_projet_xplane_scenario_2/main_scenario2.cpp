@@ -4,11 +4,13 @@
 #include "oculus.h"
 #include <QTimer>
 #include <QFile>
+#include <QCoreApplication>
 
 std::string* getConfig(char const*);
 
-int main()
+int main(int argc, char *argv[])
 {
+    QCoreApplication a(argc, argv);
     std::string *line;
     line = getConfig("simulation.conf");
 
@@ -60,13 +62,10 @@ int main()
                     dataOculus.getRoll(), dataOculus.getPitch(), dataOculus.getYaw(),
                     dataOculus.getRollVitesse(), dataOculus.getPitchVitesse(), dataOculus.getYawVitesse());
 
-
-
-
     }
     data->SocketOFF();
 
-    return 0;
+    return a.exec();
 }
 
 std::string* getConfig(char const* fichier)
