@@ -1,7 +1,4 @@
 #include "bdd.h"
-#include "cclientudpxplane.h"
-#include "oculus.h"
-
 
 BDD::BDD()
 {

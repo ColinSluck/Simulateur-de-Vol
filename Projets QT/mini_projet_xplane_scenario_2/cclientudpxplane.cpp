@@ -1,4 +1,4 @@
-#include "CclientUDPXplane.h"
+#include "cclientudpxplane.h"
 
 CclientUDPXplane::CclientUDPXplane() : BufLen(0)
 {
@@ -113,11 +113,11 @@ float CclientUDPXplane::getRoll() { return roll; }
 
 float CclientUDPXplane::getRollVolt()
 {
-    if(-4.5<=roll && roll<=4.5)
+    if(-10<=roll && roll<=10)
     {
-        return(roll*2);
+        return(roll*0.9);
     }
-    else if(roll<-4.5)
+    else if(roll<-10)
     {
         return(-9);
     }
@@ -129,11 +129,11 @@ float CclientUDPXplane::getRollVolt()
 
 float CclientUDPXplane::getPitchVolt()
 {
-    if(-4.5<=pitch && pitch<=4.5)
+    if(-10<=pitch && pitch<=10)
     {
-        return(pitch * 2);
+        return(pitch * 0.9);
     }
-    else if(pitch<-4.5)
+    else if(pitch<-10)
     {
         return(-9);
     }

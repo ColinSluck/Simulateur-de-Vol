@@ -3,17 +3,34 @@
 #include "bdd.h"
 #include "oculus.h"
 #include <QTimer>
+#include <QFile>
+
+std::string* getConfig(char const*);
+
 int main()
 {
+    std::string *line;
+    line = getConfig("simulation.conf");
+
+    std::string voie1 = line[0];
+    std::string voie2 = line[1];
+    std::string addresse_xplane = line[2];
+    std::string port = line[3];
+
+    std::cout << voie1 << std::endl
+              << voie2 << std::endl
+              << addresse_xplane << std::endl
+              << port << std::endl;
+
     QTimer timer;
     timer.start();
 
     CUsb_6xxx *usb1=new CUsb_6xxx;
-    usb1->configuration("Simulation","Dev6/ao0","ao0");
-    usb1->configuration_2("Simulation2","Dev6/ao1","ao1");
+    usb1->configuration(QString::fromUtf8(line[0].c_str()));
+    usb1->configuration_2(QString::fromUtf8(line[1].c_str()));
 
     CclientUDPXplane *data=new CclientUDPXplane;
-    data->configuration("127.0.0.1",49001,41);
+    data->configuration(line[2].c_str(),std::stoi(line[3]),41);
     data->SocketON();
 
     Oculus dataOculus;
@@ -51,3 +68,20 @@ int main()
 
     return 0;
 }
+
+std::string* getConfig(char const* fichier)
+{
+    QFile file(fichier);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QStringList dataFile = QString(file.readAll()).split("\n");
+    static std::string line[4];
+    QStringList buffer;
+    for(int i = 0; i < 4; i++)
+    {
+        buffer = dataFile[i].split("=");
+        line[i] = buffer[1].toStdString();
+    }
+
+    return line;
+}
+
